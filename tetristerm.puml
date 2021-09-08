@@ -1,0 +1,69 @@
+@startuml
+class com.aetxabao.tetristerm.Board {
+- int width
+- int height
+- Piece piece
+- ETetromino[][] matrix
+- Piece nextPiece
+- int lines
++ <<Create>> Board(int,int)
+- void init()
++ int getWidth()
++ int getHeight()
++ ETetromino[][] getBoardWithPiece()
++ Piece getNextPiece()
++ int getLines()
++ void pieceDoes(EAction)
++ boolean canPieceDo(EAction)
+- boolean couldHave(Piece)
++ void mergePiece()
++ boolean newPiece()
++ void removeLines()
+}
+class com.aetxabao.tetristerm.Conf {
++ {static} int BOARD_WIDTH
++ {static} int BOARD_HEIGHT
++ {static} int TARGET_LINES
+- <<Create>> Conf()
+}
+class com.aetxabao.tetristerm.Tetris {
++ {static} void main(String[])
+}
+class com.aetxabao.tetristerm.Piece {
+- int[][][] SHAPES
+- ETetromino tetromino
+- int[] pos
+- int[][] coords
++ <<Create>> Piece()
++ void setTetromino(ETetromino)
++ ETetromino getTetromino()
++ Piece clone()
++ int[] getPos()
++ void setX(int)
++ void does(EAction)
+- void rotate()
++ int[][] getCoords()
++ String toString()
+}
+class com.aetxabao.tetristerm.Input {
+~ {static} void waitStart()
+~ {static} EAction readAction()
+}
+class com.aetxabao.tetristerm.Renderer {
++ {static} void clearScreen()
++ {static} void drawInit()
++ {static} void drawBoard(Board)
++ {static} void drawYouWon(Board)
++ {static} void drawYouLost(Board)
+}
+class com.aetxabao.tetristerm.Game {
+- {static} EGameStatus gameStatus
+- {static} Board board
+~ {static} void run()
+~ {static} void init()
+~ {static} void render_game()
+~ {static} void process_input()
+~ {static} void update_game()
+~ {static} void finish()
+}
+@enduml
